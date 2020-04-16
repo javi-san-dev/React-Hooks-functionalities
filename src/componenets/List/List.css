@@ -1,0 +1,38 @@
+.list-container {
+    
+}
+.list-container ul {
+    margin: 0;
+    padding: 0;
+}
+.list-container li{
+    list-style: none;
+    margin: auto;
+    width: 540px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px #ddd;
+    margin-bottom: 10px;
+}
+.list-container li div:first-child {
+    background: #20a2ff;
+    height: 100%;
+    padding-left: 20px;
+    display: flex;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: white;
+}
+.list-container li div:first-child p:first-child{
+    width: 88%;
+    padding-left: 25px;
+}
+.list-container li div:nth-child(2) {
+    height: 100%;
+    display: flex;
+    margin: auto;
+}
+.list-container li div:nth-child(2) p:first-child{
+    width: 80%;
+    padding-left: 25px;
+}
