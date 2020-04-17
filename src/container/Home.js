@@ -71,9 +71,15 @@ const Home = () => {
 
     return (
         <div className='home-container'>
-            <Form onAddTask={addTaskHandler} />
-            <Search onLoadingTasks={filteredTasks} />
-            {MyTaskList}
+            <div>
+                <Form onAddTask={addTaskHandler} />
+                <Search onLoadingTasks={filteredTasks} />
+            </div>
+            <div>
+
+                {MyTaskList}
+            </div>
+
         </div>
     );
 };

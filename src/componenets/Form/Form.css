@@ -2,15 +2,15 @@
 .form-container{
     text-align: left;
 
-    max-width: 500px;
-    margin: 2rem auto;
+    max-width: 400px;
+    margin-bottom: 10px;
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 4px #ddd;
     text-align: left;
     padding: 20px;
     overflow: hidden;
-    transition: all 2s;
+    transition: all 1s;
 }
 .form-container-title {
     display: flex;

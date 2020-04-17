@@ -5,8 +5,8 @@ import Spinner from '../Spinner/Spinner';
 const Form = props => {
     const { onAddTask, loading } = props;
     const refContainer = useRef(null);
-    const [insertedPriority, setInsertedPriority] = useState(0);
-    const [insertedGroup, setInsertedGroup] = useState(0);
+    const [insertedPriority, setInsertedPriority] = useState('low');
+    const [insertedGroup, setInsertedGroup] = useState('To eat');
     const [insertedTask, setInsertedTask] = useState('');
     const [insertedDate, setInsertedDate] = useState('');
     const [isLoading, setIsLoading] = useState(false);

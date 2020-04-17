@@ -3,5 +3,17 @@ body {
     background: #f2f2f2;
 }
 .home-container {
- 
+ display: flex;
+}
+.home-container div:first-child {
+    flex: 0.5;
+}
+.home-container div:nth-child(2) {
+    flex: 1;
+}
+
+@media only screen and (max-width: 1000px) {
+    .home-container {
+        flex-direction: column;
+       }
 }
