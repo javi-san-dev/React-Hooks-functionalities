@@ -63,3 +63,14 @@
     outline: none;
     border-bottom-color: #20a2ff;
 }
+.add-task-form {
+    border: 2px solid #ccc;
+    width: 40px;
+    padding: 3px;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(174, 174, 174);
+    text-align: center;
+}

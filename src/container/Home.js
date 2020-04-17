@@ -1,7 +1,11 @@
-import React, { useReducer, useMemo } from 'react';
+import React, { useReducer, useMemo, useEffect } from 'react';
 import './Home.css';
 import Form from '../componenets/Form/Form';
 import List from '../componenets/List/List';
+import Search from '../componenets/Search/Search';
+
+import useHttp from '../hooks/http';
+
 //import firebase from '../../config/firebase';
 
 const taskReducer = (currentTasks, action) => {
@@ -17,14 +21,33 @@ const taskReducer = (currentTasks, action) => {
     }
 }
 const Home = () => {
-    const [userTasks, dispatch] = useReducer(taskReducer, [])
+    const [userTasks, dispatch] = useReducer(taskReducer, []);
+    const {
+        isLoading,
+        error,
+        data,
+        sendRequest,
+        reqExtra,
+        reqIdentifer,
+        clear
+    } = useHttp();
     /*
    firebase.firestore().collection('times').add({
        title: 'titulo',
        seconds: 34
    })*/
+    useEffect(() => {
+
+    }, [])
 
     const addTaskHandler = values => {
+        sendRequest(
+            '',
+            'POST',
+            JSON.stringify(values),
+            values,
+            'ADD_TASK'
+        );
         dispatch({
             type: 'ADD',
             task: values
@@ -47,6 +70,7 @@ const Home = () => {
     return (
         <div className='home-container'>
             <Form onAddTask={addTaskHandler} />
+            <Search />
             {MyTaskList}
         </div>
     );

@@ -20,16 +20,23 @@ const Form = props => {
         }
         console.log(values)
         console.log(refContainer.current.style.height)
-        //refContainer.current.style.height = '73px';
+        refContainer.current.style.height = '73px';
         setIsLoading(true)
         onAddTask(values)
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 3000);
+    }
+
+    const addTaskHandler = () => {
+        refContainer.current.style.height = '100%';
     }
 
     return (
         <div className='form-container' ref={refContainer} >
             <div className='form-container-title'>
                 <h1>Add Task</h1>
-                {isLoading && <Spinner />}
+                {isLoading ? <Spinner /> : <div onClick={addTaskHandler} className='add-task-form'>+</div>}
             </div>
 
             <form onSubmit={submitHandler} className="form">
