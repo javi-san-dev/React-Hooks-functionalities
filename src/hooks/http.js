@@ -19,6 +19,7 @@ const httpReducer = (curHttpState, action) => {
                 identifier: null
             };
         case 'RESPONSE':
+            console.log(action.identifier)
             return {
                 ...curHttpState,
                 loading: false,
@@ -55,7 +56,7 @@ const useHttp = () => {
                 return response.json();
             })
             .then(responseData => {
-                dispatch({ type: 'RESPONSE', id: responseData.name, values: values, identifier: reqIdentifer });
+                dispatch({ type: 'RESPONSE', id: responseData, values: values, identifier: reqIdentifer });
             })
             .catch(error => {
                 dispatch({ type: 'ERROR', errorMessage: 'Something went wrong!' });

@@ -13,10 +13,10 @@ const taskReducer = (currentTasks, action) => {
             return currentTasks.filter(elem => elem.task.startsWith(action.tasks));
         case 'ADD':
             const addTask = action.task;
-            addTask["id"] = action.id;
+            addTask["id"] = action.id['name'];
             return [...currentTasks, addTask];
         case 'DELETE':
-            return currentTasks.filter(elem => elem.task !== action.task);
+            return currentTasks.filter(elem => elem.id !== action.id);
         default:
             throw new Error('new errorrr!')
     }
@@ -35,7 +35,7 @@ const Home = () => {
     } = useHttp();
 
     useEffect(() => {
-        if (reqIdentifer === 'REMOVE_TASK') dispatch({ type: 'DELETE', id: dataId });
+        if (reqIdentifer === 'REMOVE_TASK') dispatch({ type: 'DELETE', id: values });
         if (reqIdentifer === 'ADD_TASK') dispatch({ type: 'ADD', task: values, id: dataId });
     }, [dataId, values, reqIdentifer, isLoading, error])
 
@@ -50,11 +50,11 @@ const Home = () => {
     }
 
     const removeTaskHandler = taskId => {
-        dispatch({ type: 'DELETE', taskId: taskId });
         sendRequest(
-            `https://react-hooks-e1106.firebaseio.com/tasksId/`,
+            `https://react-hooks-e1106.firebaseio.com/tasks/${taskId}.json`,
             'DELETE',
             null,
+            taskId,
             'REMOVE_TASK'
         );
     }
