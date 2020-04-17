@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Search.css';
 
-const Search = () => {
-    const [insertedFilter, setInsertedFilter] = useState('')
+const Search = props => {
+    const { onLoadingTasks } = props;
+    const [insertedFilter, setInsertedFilter] = useState('');
+
+    useEffect(() => {
+        onLoadingTasks(insertedFilter);
+    }, [insertedFilter]);
+
     return (
         <div className='search-container'>
             <div>Search By title:</div>

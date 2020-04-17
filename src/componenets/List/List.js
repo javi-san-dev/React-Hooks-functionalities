@@ -19,7 +19,7 @@ const List = props => {
                         <p className='date-list'>{elem.date}</p>
                         <p className='group-list'>{elem.group}</p>
                         <p className='priority-list'>{elem.priority}</p>
-                        <button onClick={onRemoveTask.bind(this, elem.task)}>Remove</button>
+                        <button onClick={onRemoveTask.bind(this, elem.id)}>Remove</button>
                     </li>
                 ))}
             </ul>

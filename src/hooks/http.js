@@ -3,8 +3,8 @@ import { useReducer, useCallback } from 'react';
 const initState = {
     loading: false,
     error: null,
-    data: null,
-    extra: null,
+    dataId: null,
+    values: null,
     identifier: null
 }
 
@@ -14,21 +14,22 @@ const httpReducer = (curHttpState, action) => {
             return {
                 loading: true,
                 error: null,
-                data: null,
-                extra: null,
-                identifier: action.identifier
+                dataId: null,
+                values: null,
+                identifier: null
             };
         case 'RESPONSE':
             return {
                 ...curHttpState,
                 loading: false,
-                data: action.responseData,
-                extra: action.extra
+                dataId: action.id,
+                values: action.values,
+                identifier: action.identifier
             };
         case 'ERROR':
             return { loading: false, error: action.errorMessage };
         case 'CLEAR':
-            return initialState;
+            return initState;
         default:
             throw new Error('Should not be reached!');
     }
@@ -41,8 +42,8 @@ const useHttp = () => {
         dispatch({ type: 'CLEAR' });
     }
 
-    const sendRequest = (url, method, body, reqExtra, reqIdentifer) => {
-        dispatchHttp({ type: 'SEND', identifier: reqIdentifer });
+    const sendRequest = (url, method, body, values, reqIdentifer) => {
+        dispatch({ type: 'SEND' });
         fetch(url, {
             method: method,
             body: body,
@@ -54,26 +55,19 @@ const useHttp = () => {
                 return response.json();
             })
             .then(responseData => {
-                dispatchHttp({
-                    type: 'RESPONSE',
-                    responseData: responseData,
-                    extra: reqExtra
-                });
+                dispatch({ type: 'RESPONSE', id: responseData.name, values: values, identifier: reqIdentifer });
             })
             .catch(error => {
-                dispatchHttp({
-                    type: 'ERROR',
-                    errorMessage: 'Something went wrong!'
-                });
+                dispatch({ type: 'ERROR', errorMessage: 'Something went wrong!' });
             });
     }
 
     return {
         isLoading: httpState.loading,
-        data: httpState.data,
+        dataId: httpState.dataId,
         error: httpState.error,
         sendRequest: sendRequest,
-        reqExtra: httpState.extra,
+        values: httpState.values,
         reqIdentifer: httpState.identifier,
         clear: ClearState
     }

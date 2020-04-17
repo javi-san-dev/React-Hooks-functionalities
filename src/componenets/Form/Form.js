@@ -18,8 +18,6 @@ const Form = props => {
             group: insertedGroup,
             date: insertedDate
         }
-        console.log(values)
-        console.log(refContainer.current.style.height)
         refContainer.current.style.height = '73px';
         setIsLoading(true)
         onAddTask(values)
