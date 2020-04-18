@@ -9,7 +9,8 @@ const List = props => {
                 <p>Tasks</p>
                 <p className='date-list'>Date</p>
                 <p className='group-list'>Group</p>
-                <p>Priority</p>
+                <p className='priority-list'>Priority</p>
+                <p className='delete-list'>Delete</p>
             </div>
             <ul>
                 {tasks.map((elem, id) => (
@@ -19,7 +20,7 @@ const List = props => {
                         <p className='date-list'>{elem.date}</p>
                         <p className='group-list'>{elem.group}</p>
                         <p className='priority-list'>{elem.priority}</p>
-                        <button onClick={onRemoveTask.bind(this, elem.id)}>Remove</button>
+                        <button className='delete-list' onClick={onRemoveTask.bind(this, elem.id)}>Remove</button>
                     </li>
                 ))}
             </ul>

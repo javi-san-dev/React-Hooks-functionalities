@@ -11,13 +11,18 @@ const Search = props => {
 
     return (
         <div className='search-container'>
-            <div>Search By title:</div>
+            <div>Search by group:</div>
             <div>
-                <input
-                    value={insertedFilter}
-                    onChange={(e) => {
-                        setInsertedFilter(e.target.value);
-                    }} />
+                <select className='form-select' id="priority" value={insertedFilter}
+                    onChange={event => {
+                        setInsertedFilter(event.target.value)
+                    }}>
+                    <option value=""></option>
+                    <option value="To eat">To eat</option>
+                    <option value="To watch">To watch</option>
+                    <option value="To buy">To buy</option>
+                    <option value="To eat">To eat</option>
+                </select>
             </div>
         </div >
     );

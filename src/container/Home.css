@@ -15,5 +15,8 @@ body {
 @media only screen and (max-width: 1000px) {
     .home-container {
         flex-direction: column;
-       }
+    }
+    .home-container div:first-child {
+        margin: auto;
+    }
 }

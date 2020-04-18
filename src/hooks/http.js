@@ -3,7 +3,7 @@ import { useReducer, useCallback } from 'react';
 const initState = {
     loading: false,
     error: null,
-    dataId: null,
+    responseData: null,
     values: null,
     identifier: null
 }
@@ -14,16 +14,15 @@ const httpReducer = (curHttpState, action) => {
             return {
                 loading: true,
                 error: null,
-                dataId: null,
+                responseData: null,
                 values: null,
                 identifier: null
             };
         case 'RESPONSE':
-            console.log(action.identifier)
             return {
                 ...curHttpState,
                 loading: false,
-                dataId: action.id,
+                responseData: action.responseData,
                 values: action.values,
                 identifier: action.identifier
             };
@@ -56,7 +55,7 @@ const useHttp = () => {
                 return response.json();
             })
             .then(responseData => {
-                dispatch({ type: 'RESPONSE', id: responseData, values: values, identifier: reqIdentifer });
+                dispatch({ type: 'RESPONSE', responseData: responseData, values: values, identifier: reqIdentifer });
             })
             .catch(error => {
                 dispatch({ type: 'ERROR', errorMessage: 'Something went wrong!' });
@@ -65,7 +64,7 @@ const useHttp = () => {
 
     return {
         isLoading: httpState.loading,
-        dataId: httpState.dataId,
+        responseData: httpState.responseData,
         error: httpState.error,
         sendRequest: sendRequest,
         values: httpState.values,

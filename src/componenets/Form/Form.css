@@ -1,7 +1,7 @@
 
 .form-container{
     text-align: left;
-
+    margin-right: 10px;
     max-width: 400px;
     margin-bottom: 10px;
     background: #fff;
@@ -73,4 +73,10 @@
     cursor: pointer;
     color: rgb(174, 174, 174);
     text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    .form-containe {
+       
+    }
 }

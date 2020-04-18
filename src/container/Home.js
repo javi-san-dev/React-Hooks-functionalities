@@ -10,7 +10,7 @@ import useHttp from '../hooks/http';
 const taskReducer = (currentTasks, action) => {
     switch (action.type) {
         case 'SET':
-            return currentTasks.filter(elem => elem.task.startsWith(action.tasks));
+            return action.tasks;
         case 'ADD':
             const addTask = action.task;
             addTask["id"] = action.id['name'];
@@ -27,7 +27,7 @@ const Home = () => {
     const {
         isLoading,
         error,
-        dataId,
+        responseData,
         sendRequest,
         values,
         reqIdentifer,
@@ -36,8 +36,21 @@ const Home = () => {
 
     useEffect(() => {
         if (reqIdentifer === 'REMOVE_TASK') dispatch({ type: 'DELETE', id: values });
-        if (reqIdentifer === 'ADD_TASK') dispatch({ type: 'ADD', task: values, id: dataId });
-    }, [dataId, values, reqIdentifer, isLoading, error])
+        if (reqIdentifer === 'ADD_TASK') dispatch({ type: 'ADD', task: values, id: responseData });
+        if (reqIdentifer === 'SET_TASK') {
+            const loadedTasks = [];
+            for (const key in responseData) {
+                loadedTasks.push({
+                    id: key,
+                    date: responseData[key].date,
+                    group: responseData[key].group,
+                    priority: responseData[key].priority,
+                    task: responseData[key].task,
+                });
+                dispatch({ type: 'SET', tasks: loadedTasks });
+            }
+        }
+    }, [responseData, values, reqIdentifer, isLoading, error])
 
     const addTaskHandler = values => {
         sendRequest(
@@ -59,8 +72,15 @@ const Home = () => {
         );
     }
 
-    const filteredTasks = tasks => {
-        dispatch({ type: 'SET', tasks: tasks });
+    const filteredTasks = enteredFilter => {
+        const query = enteredFilter.length === 0 ? '' : `?orderBy="group"&equalTo="${enteredFilter}"`;
+        sendRequest(
+            'https://react-hooks-e1106.firebaseio.com/tasks.json' + query,
+            'GET',
+            null,
+            null,
+            'SET_TASK'
+        );
     }
 
     const MyTaskList = useMemo(() => {
@@ -76,7 +96,6 @@ const Home = () => {
                 <Search onLoadingTasks={filteredTasks} />
             </div>
             <div>
-
                 {MyTaskList}
             </div>
 
