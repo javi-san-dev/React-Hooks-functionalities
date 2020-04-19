@@ -9,7 +9,7 @@ const Form = props => {
     const [insertedGroup, setInsertedGroup] = useState('To eat');
     const [insertedTask, setInsertedTask] = useState('');
     const [insertedDate, setInsertedDate] = useState('');
-    //const [isLoading, setIsLoading] = useState(false);
+
     const submitHandler = event => {
         event.preventDefault();
         const values = {
@@ -19,11 +19,7 @@ const Form = props => {
             date: insertedDate
         }
         refContainer.current.style.height = '73px';
-        //setIsLoading(true)
-        onAddTask(values)
-        //setTimeout(() => {
-        //setIsLoading(false)
-        //}, 3000);
+        onAddTask(values);
     }
 
     const addTaskHandler = () => {
@@ -91,12 +87,7 @@ const Form = props => {
                         }}
                     />
                 </div>
-
-
                 <button>Add</button>
-
-
-
             </form>
         </div>
     );

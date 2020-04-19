@@ -1,11 +1,10 @@
-import React, { useReducer, useMemo, useEffect } from 'react';
+import React, { useReducer, useMemo, useEffect, useCallback } from 'react';
 import './Home.css';
 import Form from '../componenets/Form/Form';
 import List from '../componenets/List/List';
 import Search from '../componenets/Search/Search';
 import ErrorBox from '../componenets/ErrorBox/ErrorBox';
 import useHttp from '../hooks/http';
-
 
 const taskReducer = (currentTasks, action) => {
     switch (action.type) {
@@ -52,7 +51,7 @@ const Home = () => {
         }
     }, [responseData, values, reqIdentifer, isLoading, error])
 
-    const addTaskHandler = values => {
+    const addTaskHandler = useCallback(values => {
         sendRequest(
             'https://react-hooks-e1106.firebaseio.com/tasks.json',
             'POST',
@@ -60,9 +59,9 @@ const Home = () => {
             values,
             'ADD_TASK'
         );
-    }
+    }, [sendRequest]);
 
-    const removeTaskHandler = taskId => {
+    const removeTaskHandler = useCallback(taskId => {
         sendRequest(
             `https://react-hooks-e1106.firebaseio.com/tasks/${taskId}.json`,
             'DELETE',
@@ -70,9 +69,9 @@ const Home = () => {
             taskId,
             'REMOVE_TASK'
         );
-    }
+    }, [sendRequest]);
 
-    const filteredTasks = enteredFilter => {
+    const filteredTasks = useCallback(enteredFilter => {
         const query = enteredFilter.length === 0 ? '' : `?orderBy="group"&equalTo="${enteredFilter}"`;
         sendRequest(
             'https://react-hooks-e1106.firebaseio.com/tasks.json' + query,
@@ -81,7 +80,7 @@ const Home = () => {
             null,
             'SET_TASK'
         );
-    }
+    }, [sendRequest])
 
     const MyTaskList = useMemo(() => {
         return (
