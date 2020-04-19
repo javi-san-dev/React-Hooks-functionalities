@@ -3,7 +3,7 @@ import './Home.css';
 import Form from '../componenets/Form/Form';
 import List from '../componenets/List/List';
 import Search from '../componenets/Search/Search';
-
+import ErrorBox from '../componenets/ErrorBox/ErrorBox';
 import useHttp from '../hooks/http';
 
 
@@ -91,6 +91,7 @@ const Home = () => {
 
     return (
         <div className='home-container'>
+            {error && <ErrorBox onClose={clear}>{error}</ErrorBox>}
             <div className='home-form'>
                 <Form onAddTask={addTaskHandler} isLoading={isLoading} />
                 <Search onLoadingTasks={filteredTasks} />
