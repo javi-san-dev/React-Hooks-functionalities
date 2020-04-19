@@ -91,11 +91,11 @@ const Home = () => {
 
     return (
         <div className='home-container'>
-            <div>
-                <Form onAddTask={addTaskHandler} />
+            <div className='home-form'>
+                <Form onAddTask={addTaskHandler} isLoading={isLoading} />
                 <Search onLoadingTasks={filteredTasks} />
             </div>
-            <div>
+            <div className='home-list'>
                 {MyTaskList}
             </div>
 

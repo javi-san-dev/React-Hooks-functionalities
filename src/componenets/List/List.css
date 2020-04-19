@@ -74,3 +74,17 @@
     width: 10%;
 }
 
+@media only screen and (max-width: 700px) {
+    .list-header p {
+        font-size: 14px;
+    }
+   li p {
+       font-size: 12px;
+   }
+   .list-container li button {
+    height: 30px;
+    margin-right: 5px;
+    font-size: 10px;
+}
+}
+

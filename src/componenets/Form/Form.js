@@ -3,13 +3,13 @@ import './Form.css';
 import Spinner from '../Spinner/Spinner';
 
 const Form = props => {
-    const { onAddTask, loading } = props;
+    const { onAddTask, isLoading } = props;
     const refContainer = useRef(null);
     const [insertedPriority, setInsertedPriority] = useState('low');
     const [insertedGroup, setInsertedGroup] = useState('To eat');
     const [insertedTask, setInsertedTask] = useState('');
     const [insertedDate, setInsertedDate] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    //const [isLoading, setIsLoading] = useState(false);
     const submitHandler = event => {
         event.preventDefault();
         const values = {
@@ -19,11 +19,11 @@ const Form = props => {
             date: insertedDate
         }
         refContainer.current.style.height = '73px';
-        setIsLoading(true)
+        //setIsLoading(true)
         onAddTask(values)
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 3000);
+        //setTimeout(() => {
+        //setIsLoading(false)
+        //}, 3000);
     }
 
     const addTaskHandler = () => {
@@ -75,7 +75,7 @@ const Form = props => {
                         <option value="To eat">To eat</option>
                         <option value="To watch">To watch</option>
                         <option value="To buy">To buy</option>
-                        <option value="To eat">To eat</option>
+                        <option value="To visit">To visit</option>
                     </select>
                 </div>
 

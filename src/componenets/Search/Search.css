@@ -9,6 +9,7 @@
     height: 50px;
     align-items: center;
     margin-top: 10px;
+    margin-right: 10px;
 }
 .search-container div:first-child {
     width: 70%;

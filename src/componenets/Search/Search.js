@@ -21,7 +21,7 @@ const Search = props => {
                     <option value="To eat">To eat</option>
                     <option value="To watch">To watch</option>
                     <option value="To buy">To buy</option>
-                    <option value="To eat">To eat</option>
+                    <option value="To visit">To visit</option>
                 </select>
             </div>
         </div >

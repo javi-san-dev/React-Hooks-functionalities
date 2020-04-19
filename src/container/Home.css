@@ -5,18 +5,24 @@ body {
 .home-container {
  display: flex;
 }
-.home-container div:first-child {
+.home-form {
     flex: 0.5;
 }
-.home-container div:nth-child(2) {
+.home-list {
     flex: 1;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1100px) {
     .home-container {
-        flex-direction: column;
+        display: inline;
     }
-    .home-container div:first-child {
+    .home-form {
+        width: 450px;
         margin: auto;
+        padding-left: 10px;
+    }
+    .home-list {
+        width: 100%;
+        flex: none;
     }
 }

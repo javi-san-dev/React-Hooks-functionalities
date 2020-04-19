@@ -7,7 +7,7 @@ const App = () => {
     const authContext = useContext(AuthContext);
     let content = null;
     authContext.isAuth ? content = <Home /> : content = <Auth />
-    return <Home />;
+    return content;
 };
 
 export default App;
